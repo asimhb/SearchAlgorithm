@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SearchAlgorithm
 {
 
-    public class FileSort
+    public class SearchFolder
     {
         public void AddFileNamesToList(string sourceDir, List<string> allFiles)
         {

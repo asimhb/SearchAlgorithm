@@ -30,7 +30,7 @@ namespace SearchAlgorithm
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            FileSort srt = new FileSort();
+            SearchFolder srt = new SearchFolder();
 
             string searchWord = searchBox.Text;
             List<string> allFiles = new List<string>();
