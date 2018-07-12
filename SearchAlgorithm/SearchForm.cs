@@ -12,14 +12,14 @@ using System.Diagnostics;
 
 namespace SearchAlgorithm
 {
-    public partial class Form1 : Form
+    public partial class search : Form
     {
-        public Form1()
+        public search()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Search_Load(object sender, EventArgs e)
         {
 
 
@@ -37,8 +37,8 @@ namespace SearchAlgorithm
             srt.AddFileNamesToList(lblFolderPathName.Text, allFiles);
 
 
-
-            foreach (string fileName in allFiles) // get all the files in the folder
+            // gets files from folder
+            foreach (string fileName in allFiles) 
             {
 
                 string text = File.ReadAllText(fileName);
@@ -71,8 +71,8 @@ namespace SearchAlgorithm
                 MessageBox.Show("error");
             else
             {
-                // gameList.SetSelected(index, true);
-                Process.Start(openFile);
+                // pathList.SetSelected(index, true);
+                Process.Start("notepad.exe", openFile);
             }
 
 
@@ -83,16 +83,23 @@ namespace SearchAlgorithm
             FolderBrowserDialog fdb = new FolderBrowserDialog();
             fdb.RootFolder = Environment.SpecialFolder.Desktop;
             fdb.ShowNewFolderButton = false;
-            if (fdb.ShowDialog() == DialogResult.OK)
+            if(lblFolderPathName.Text != "" && fdb.ShowDialog() == DialogResult.OK)
             {
-                
-               lblFolderPathName.Text = fdb.SelectedPath;
+                pathList.Items.Clear();
+                searchBox.Clear();
+                lblFolderPathName.Text = fdb.SelectedPath;
             }
+            else if (fdb.ShowDialog() == DialogResult.OK)
+            {
+                lblFolderPathName.Text = fdb.SelectedPath;
+            }
+            
         }
 
         private void ext_TextChanged(object sender, EventArgs e)
         {
        
         }
+
     }
 }

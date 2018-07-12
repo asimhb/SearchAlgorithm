@@ -1,6 +1,6 @@
 ﻿namespace SearchAlgorithm
 {
-    partial class Form1
+    partial class search
     {
         /// <summary>
         /// Required designer variable.
@@ -126,7 +126,7 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Enter Search Here:";
             // 
-            // Form1
+            // search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -141,9 +141,9 @@
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.searchBox);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form1";
+            this.Name = "search";
             this.Text = "Search";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Search_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
