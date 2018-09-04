@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
@@ -32,22 +32,31 @@ namespace SearchAlgorithm
         {
             SearchFolder srt = new SearchFolder();
 
+
             string searchWord = searchBox.Text;
             List<string> allFiles = new List<string>();
             srt.AddFileNamesToList(lblFolderPathName.Text, allFiles);
 
-
-            // gets files from folder
-            foreach (string fileName in allFiles) 
+            Thread thread = new Thread(() =>
             {
 
-                string text = File.ReadAllText(fileName);
-                if (text.Contains(searchWord))
+                foreach (string fileName in allFiles)
                 {
-                    pathList.Items.Add(fileName);
 
+                    string text = File.ReadAllText(fileName);
+                    if (text.Contains(searchWord))
+                    {
+                        Action action = () => pathList.Items.Add(fileName);
+                        this.BeginInvoke(action);
+
+                    }
                 }
-            }
+
+
+            });
+            thread.Start();
+            // gets files from folder
+
 
         }
 
